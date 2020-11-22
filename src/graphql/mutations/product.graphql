@@ -1,0 +1,22 @@
+mutation InsertNewProduct(
+  $name: String!
+  $categoryID: String!
+  $files: [Upload!]!
+) {
+  insertNewProduct(name: $name, categoryID: $categoryID, files: $files) {
+    product {
+      id
+      name
+      category {
+        id
+        name
+      }
+      created_at
+      updated_at
+    }
+    errors {
+      field
+      message
+    }
+  }
+}

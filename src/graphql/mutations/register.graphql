@@ -1,0 +1,37 @@
+mutation Register(
+  $firstName: String!,
+  $lastName: String!,
+  $age: Float!,
+  $rolesId: Float!,
+  $username: String!,
+  $password: String!,
+  $email: String!
+) {
+  register(
+    options: {
+      firstName: $firstName
+      lastName: $lastName
+      age: $age
+      rolesId: $rolesId
+      username: $username
+      password: $password
+      email: $email
+    }
+  ) {
+    errors {
+      field
+      message
+    }
+    user {
+      id
+      firstName
+      lastName
+      age
+      username
+      email
+      roles {
+        title
+      }
+    }
+  }
+}
