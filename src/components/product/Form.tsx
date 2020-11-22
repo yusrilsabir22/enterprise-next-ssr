@@ -79,15 +79,17 @@ const ProductForm: React.FC<ProductFormProps> = (props: any) => {
                 initialValues={{name: ''}}
                 onSubmit={async (values, data) => {
                     
-                    props.isSubmitting(true)
-                    console.log(files)
-                    // const response = await insertNewProduct({
-                    //     variables: {
-                    //         categoryID: category!.id,
-                    //         name: values.name,
-                    //         files
-                    //     }
-                    // });
+                    props.isSubmitting(true);
+                    let fil = files.filter(v => v !== initialFiles)
+                    fil.pop()
+                    setFiles(prev => [...fil])
+                    const response = await insertNewProduct({
+                        variables: {
+                            categoryID: category!.id,
+                            name: values.name,
+                            files: fil
+                        }
+                    });
                     props.isSubmitting(false)
                 }}
                 innerRef={props.refs}
